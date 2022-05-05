@@ -78,15 +78,25 @@ public class TestXmlDom {
 	 * @param listaNodos
 	 */
 	private void showPersonProperties(NodeList listaNodos) {
+		//For para recorrer todos los nodos persona
 		for (int i=0; i<listaNodos.getLength();i++) {
+			//Guardamos el elemento actual.
 			Node nodo=listaNodos.item(i);
+			//Si es de tipo nodo, recorrerá dentro de persona todas sus etiquetas hijas,
+			//Si Es de texto, imprime el texto
 			switch (nodo.getNodeType()){
 			case Node.ELEMENT_NODE:
+				//Casteamos el elemento actual de la lista de nodos a Element.
 				Element elemento = (Element) nodo;
-				System.out.println("Etiqueta:" + 
+				//Imprimimos Etiqueta: junto la etiqueta padre de cada nodo
+				System.out.println("Etiqueta:" +
 						elemento.getTagName());
+				//Bucle para recorrer los diferentes hijos de elemento.
 				for (int j=0; j<elemento.getChildNodes().getLength(); j++) {
+					//Creamos otro elemento pero esta vez almacenará el elemento actual de las
+					//propiedades.
 					Element ele = (Element) elemento.getChildNodes().item(j);
+					//Imprimimos el nombre de la etiqueta junto a su contenido
 					System.out.println(" - " + ele.getTagName() + ": " + ele.getTextContent());
 				}
 				break;
@@ -108,3 +118,4 @@ public class TestXmlDom {
 		return null;		
 	}
 }
+
